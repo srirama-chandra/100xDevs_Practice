@@ -35,5 +35,4 @@ async function validateUser (req,res,next)
 app.get("/signin",validateInput,validateUser,(req,res)=>{
     res.json({msg:"Welcome Back User",token:jwt.sign(req.body.email,jwtPassword)});
 });
-
 app.listen(3000);
