@@ -4,14 +4,21 @@ function App() {
 
   const [count,setCount]=useState(0);
 
+  return (
+    <div>
+        <ButtonComponenet count={count} setCount={setCount} ></ButtonComponenet>
+    </div>
+  );
+}
+
+function ButtonComponenet(props){
+
   function clickHandler(){
-    setCount(count+1);
+    props.setCount(count+1);
   }
 
   return (
-    <div>
-        <button onClick={clickHandler}>Count {count}</button>
-    </div>
+    <button count={props.count} onClick={clickHandler}></button>
   )
 }
 
