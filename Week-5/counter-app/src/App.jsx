@@ -14,7 +14,7 @@ function App() {
 function ButtonComponenet(props){
 
   function clickHandler(){
-    props.setCount(count+1);
+    props.setCount(props.count+1);
   }
 
   return (
