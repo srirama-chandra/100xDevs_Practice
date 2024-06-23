@@ -18,7 +18,7 @@ function ButtonComponenet(props){
   }
 
   return (
-    <button count={props.count} onClick={clickHandler}></button>
+    <button onClick={clickHandler}>count {props.count} </button>
   )
 }
 
