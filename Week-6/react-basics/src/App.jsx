@@ -5,7 +5,7 @@ function App() {
    <>
       <RenderingHeader></RenderingHeader>
       <Header title="harkirat"></Header>
-      <Header title="Ramesh"></Header>
+      <Header title={"Ramesh"}></Header>
    </>
   )
 }
@@ -24,8 +24,8 @@ function RenderingHeader(){
   </div>)
 }
 
-function Header(props){
+const Header=React.memo(function Header(props){
   return <div>{props.title}</div>
-}
+})
 
 export default App;
