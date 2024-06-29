@@ -1,25 +1,25 @@
 import React, { useState } from "react";
 
 function App() {
-  const [title, setTitle] = useState("My Name Is Ram");
-
-  function updateText(){
-    setTitle(Math.random())
-  }
-  return(
-    <div>
-    <button onClick={updateText}>Update Text</button>
-    <TextData inputValue={title}></TextData>
-    <TextData inputValue={"Ramesh"}></TextData>
-    <TextData inputValue={"Ramesh"}></TextData>
-    <TextData inputValue={"Ramesh"}></TextData>
-    </div>
-  ) 
+    return (
+      <>
+      <WrapperComponent><TextComponent input={"Hi There"}></TextComponent></WrapperComponent>
+      <WrapperComponent><TextComponent input={"Hello"}></TextComponent></WrapperComponent>
+      </>
+    )
 }
 
-const TextData=React.memo(function TextData({inputValue})
+function WrapperComponent({children})
 {
-  return (<div>My Name Is {inputValue}</div>)
-});
+    return (
+      <div style={{border:"1px solid red"}}>
+        {children}
+      </div>
+    )
+}
+function TextComponent({input})
+{
+  return (<div>{input}</div>)
+}
 
 export default App;
