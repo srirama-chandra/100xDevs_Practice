@@ -1,25 +1,15 @@
-import { useEffect, useState, memo,useCallback } from 'react'
+import { useEffect, useState, memo,useCallback, useRef } from 'react'
 import './App.css'
 import axios from 'axios'
 
 function App() {
-  const [count,setCount]=useState(0);
-  
-  let demo=useCallback(function demo()
-  {
-    console.log("Child Re-rendered");
+  const [incomeTax,setIncomeTax]=useState(20000);
+  const divRef=useRef();
+  useEffect(()=>{
+    setTimeout(()=>{
+      divRef.current.innerHTML="The Income Tax is 200";
+    },3000)
   },[])
-
-  return <div>
-    <button onClick={()=>{setCount(count+1)}}>Count {count}</button>
-    <ChildComponent inputFunction={demo}></ChildComponent>
-  </div>
+  return <div ref={divRef}>The Income Tax is {incomeTax}</div>
 }
-
-let ChildComponent = memo(function ChildComponent({inputFunction})
-{
-    inputFunction();
-    return <div>Child Component</div>
-})
-
 export default App
