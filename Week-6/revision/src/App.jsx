@@ -1,20 +1,18 @@
-import React, { useRef } from 'react';
+import { useEffect, useState, memo,useCallback, useRef } from 'react'
+import './App.css'
+import axios from 'axios'
 
-const App = () => {
-  // Create a ref for the input element
-  const inputRef = useRef(null);
+function App() {
+  
+  const [incomeTax,setIncomeTax]=useState(20000);
 
-  const handleButtonClick = () => {
-    // Focus the input element when the button is clicked
-    inputRef.current.focus();
-  };
+  useEffect(()=>{
+    setTimeout(()=>{
+      let divRef=useRef();
+      divRef.current.inn
+    })
+  })
+  return <div ref={divRef}>The Income Tax is {incomeTax}</div>
+}
 
-  return (
-    <div>
-      <input ref={inputRef} type="text" placeholder="Click the button to focus me" />
-      <button onClick={handleButtonClick}>Focus Input</button>
-    </div>
-  );
-};
-
-export default App;
+export default App
