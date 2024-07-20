@@ -6,12 +6,16 @@ import './App.css'
 function App() {
 
   return (
-    <BrowserRouter>
-      <Routes>
-          <Route path='/' element={< Landing />}></Route>
+    <div>
+      <div style={{backgroundColor:"black", color:"white",textAlign:"center"}}> Header </div>
+
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Landing />}></Route>
           <Route path='/dashboard' element={<Dashboard />}></Route>
-      </Routes>
-    </BrowserRouter>
+        </Routes>
+      </BrowserRouter>
+    </div>
   )
 }
 
