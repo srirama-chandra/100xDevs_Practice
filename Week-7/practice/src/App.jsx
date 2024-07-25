@@ -1,30 +1,33 @@
-import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
-import React, { Suspense } from "react";
-const Landing = React.lazy(() => import("./components/Landing"));
-const Dashboard = React.lazy(() => import("./components/Dashboard"));
+import React, { useContext, useState } from "react";
+import { CountContext } from "./components/count";
 
 function App() {
+  const [count, setCount] = useState(0);
   return (
     <div>
-      <Suspense fallback={"Loading"}>
-        <BrowserRouter>
-          <ButtonComponent />
-          <Routes>
-            <Route path="/" element={<Landing />}></Route>
-            <Route path="/dashboard" element={<Dashboard />}></Route>
-          </Routes>
-        </BrowserRouter>
-      </Suspense>
+      <CountContext.Provider value={{ count, setCount }}>
+        <Count></Count>
+      </CountContext.Provider>
     </div>
   );
 }
 
-function ButtonComponent() {
-  const navigate = useNavigate();
+function Count() {
+  const { count } = useContext(CountContext);
   return (
     <div>
-      <button onClick={() => navigate("/")}> Landing Page </button>
-      <button onClick={() => navigate("/dashboard")}> Dashboard Page</button>
+      {count}
+      <Buttons></Buttons>
+    </div>
+  );
+}
+
+function Buttons() {
+  const { count, setCount } = useContext(CountContext);
+  return (
+    <div>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+      <button onClick={() => setCount(count - 1)}>Decrement</button>
     </div>
   );
 }
