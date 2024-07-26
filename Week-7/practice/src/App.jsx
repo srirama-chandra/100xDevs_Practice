@@ -1,4 +1,4 @@
-import { RecoilRoot , useRecoilValue } from "recoil";
+import { RecoilRoot , useRecoilValue, useRecoilValueLoadable } from "recoil";
 import { todoAtomFamily } from './store/atoms/count'
 
 function App() {
@@ -15,12 +15,25 @@ function App() {
 
 function Todo({id})
 {
-    const todoData= useRecoilValue(todoAtomFamily(id));
+    const todoData= useRecoilValueLoadable(todoAtomFamily(id));
 
-    return <div> 
-      <h1>{todoData.title}</h1>
-      <p>{todoData.description}</p>
-    </div>
+    if(todoData.state === 'loading')
+    {
+      return <div> Loading </div>
+    }
+    else if(todoData.state === 'hasValue')
+    {
+      return <div> 
+          <h1>{todoData.contents.title}</h1>
+          <p>{todoData.contents.description}</p>
+      </div>
+    }
+    else if(todoData.state==='hasError')
+    {
+      return <div>Error 404</div>
+    }
+
+    
 }
 
 export default App
