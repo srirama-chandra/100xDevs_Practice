@@ -5,7 +5,7 @@ export const notificationsAtom=atom({key:"notificationsAtom",
                                      default: selector({
                                                         key:"notificationsAtomSelector",
                                                         get: async ()=>{
-                                                          const res=await axios.get("https://sum-server.100xdevs.com/notifications");
+                                                          const res=await axios.get("url");
                                                           return res.data;
                                                         }
                                                       })

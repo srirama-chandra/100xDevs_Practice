@@ -6,7 +6,7 @@ export const todoAtomFamily= atomFamily({
     default: selectorFamily({
         key:"todoSelectorFamily",
         get: (id) => async ({get}) =>{ 
-            const res= await axios.get(`https://sum-server.100xdevs.com/todo?id=${id}`);
+            const res= await axios.get(`url`);
             return res.data.todo;
         }
     })
