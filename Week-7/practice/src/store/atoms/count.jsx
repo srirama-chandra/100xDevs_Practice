@@ -1,16 +1,14 @@
 import {atom, selector} from 'recoil'
+import axios from 'axios'
 
-export const countAtom= atom({
-    key:"countAtom",
-    default:0
-})
+export const notificationsAtom= atom({
 
-export const countAtomSelector=selector({
-    key:"countAtomSelector",
-    get: ({get}) => {
-
-         const value=get(countAtom);
-         return value%2==0;
-
-    }
+    key:"notificationsAtom",
+    default: selector({
+        key:"notificationSelector",
+        get: async ()=> {
+            const notificationData= await axios.get('url');
+            return notificationData.data;
+        }
+    })
 })
