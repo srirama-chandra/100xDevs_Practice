@@ -19,7 +19,7 @@ function App() {
 function Todo({id}) {
   const [todos,setTodos]=useState({});
 
-  useEffect(()=>{axios.get(`https://sum-server.100xdevs.com/todo?id=${id}`).then(res=>setTodos(res.data.todo))},[id])
+  useEffect(()=>{axios.get(`url`).then(res=>setTodos(res.data.todo))},[id])
 
   return (
     <div>
