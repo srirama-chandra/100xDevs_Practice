@@ -20,7 +20,7 @@ export const todoAtomFamily = atomFamily({
     default : selectorFamily({
         key:"todoSelectorFamily",
         get: (id) => async ({get}) =>{ 
-            await new Promise(r => setTimeout(r,5000));
+            await new Promise(r => setTimeout(r,2000));
             const todoData = await axios.get(`url`);
             return todoData.data.todo;
         }
