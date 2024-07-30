@@ -5,7 +5,22 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
-      <div className="flex flex-row">
+      <div className="flex flex-row justify-between flex-wrap">
+            <div className="bg-cyan-500">First</div>
+            <div className="bg-red-500">Second</div>
+            <div className="bg-yellow-500">Third</div>
+            <div className="bg-cyan-500">First</div>
+            <div className="bg-red-500">Second</div>
+            <div className="bg-yellow-500">Third</div>
+            <div className="bg-cyan-500">First</div>
+            <div className="bg-red-500">Second</div>
+            <div className="bg-yellow-500">Third</div>
+            <div className="bg-cyan-500">First</div>
+            <div className="bg-red-500">Second</div>
+            <div className="bg-yellow-500">Third</div>
+            <div className="bg-cyan-500">First</div>
+            <div className="bg-red-500">Second</div>
+            <div className="bg-yellow-500">Third</div>
             <div className="bg-cyan-500">First</div>
             <div className="bg-red-500">Second</div>
             <div className="bg-yellow-500">Third</div>
