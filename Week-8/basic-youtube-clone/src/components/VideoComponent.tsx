@@ -3,7 +3,7 @@
 export function VideoComponent(props:any)
 {
     return (
-        <div className="pl:5 pr:5 cursor-pointer">
+        <div className="pl:5 pr:5 cursor-pointer gap-1">
 
             <img className="rounded-xl" src={props.image} alt="" />
             <div className="grid grid-cols-12">
