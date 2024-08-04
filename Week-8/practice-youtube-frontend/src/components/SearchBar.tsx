@@ -1,6 +1,6 @@
 export const SearchBar = () => {
     return (
-        <div className="w-2/4">
+        <div className="w-2/4 max-sm:hidden block">
             <form>
                 <div className="w-96 flex text-gray-900 border border-gray-500 rounded-3xl p-1 pl-3 text-sm pr-2">
                     <input
