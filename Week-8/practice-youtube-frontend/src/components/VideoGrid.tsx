@@ -70,7 +70,7 @@ export const VideoGrid = () => {
 
     return (
 
-        <div className="grid grid-cols-4 pt-10 gap-3 pl-2 pr-2">
+        <div className="grid grid-cols-1 pt-10 gap-3 pl-2 pr-2 md:grid-cols-2 lg:grid-cols-4">
 
             {
                 VIDEOS.map(video => <VideoComponent key={video.id} title={video.title} image={video.image} author={video.author} logo={video.logo} views={video.views} timeStamp={video.timeStamp} />
