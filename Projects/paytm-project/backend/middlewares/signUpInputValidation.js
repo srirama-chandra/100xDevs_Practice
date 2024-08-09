@@ -1,6 +1,6 @@
 const zod=require("zod");
 
-function inputValidationMiddleware(req,res,next)
+function signUpInputValidation(req,res,next)
 {
     const inputValidationZod= zod.object({
         username:zod.string().email(),
@@ -20,4 +20,5 @@ function inputValidationMiddleware(req,res,next)
     }
 }
 
-module.exports={inputValidationMiddleware}
+
+module.exports={signUpInputValidation}
