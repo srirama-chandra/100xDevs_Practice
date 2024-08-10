@@ -2,7 +2,7 @@ const zod = require("zod");
 
 
 
-function upddateUserInputValidation(req,res,next)
+function updateUserInputValidation(req,res,next)
 {
     const zodSchema=zod.object({
         firstname:zod.string().optional(),
@@ -20,4 +20,4 @@ function upddateUserInputValidation(req,res,next)
     }
 }
 
-module.exports={upddateUserInputValidation};
+module.exports={updateUserInputValidation};
