@@ -5,6 +5,8 @@ const {User}=require('../db/db');
 const {JWT_SECRET}=require('../config');
 const jwt=require("jsonwebtoken");
 const { signInInputValidation } = require("../middlewares/signInInputValidation");
+const { authMiddleware } = require("../middlewares/middleware");
+const { upddateUserInputValidation } = require("../middlewares/updateUserDataValidation");
 
 
 userRouter.post("/signup",signUpInputValidation,async (req,res)=>{
@@ -39,6 +41,42 @@ userRouter.post("/signin",signInInputValidation,async(req,res)=>{
     const token=jwt.sign({userId:userId},JWT_SECRET);
     return res.status(200).json({token});
 
-})
+});
+
+userRouter.put("/",authMiddleware,upddateUserInputValidation,async(req,res)=>{
+
+    await User.updateOne({_id:req.userId},req.body);
+    res.json({msg:"Updated Successfully"});
+
+});
+
+userRouter.get("/bulk",async(req,res)=>{
+
+    const name= req.query.filter || "";
+
+    const users=await User.find({
+        $or:[{
+            firstname:{
+                "$regex":name
+            }
+        },
+        {
+            lastname:{
+                "$regex":name
+            }
+        }]
+    });
+
+    res.status(400).json({
+        user:users.map(e => {
+            return {
+                _id:e.id,
+                username:e.username,
+                firstname:e.firstname,
+                lastname:e.lastname
+            }
+        })
+    })
+});
 
 module.exports={userRouter}
