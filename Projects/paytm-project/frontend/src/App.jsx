@@ -7,9 +7,8 @@ import { SendMoney } from './components/SendMoney'
 function App() {
 
   return (
-    <div className=''>
+    <div>
         <BrowserRouter>
-          <Signup></Signup>
           <Routes>
             <Route path='/signup' element={<Signup/>}></Route>
             <Route path='/signin' element={<Signin/>}></Route>

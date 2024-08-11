@@ -13,9 +13,9 @@ export function Signup()
 
                     <Heading label={"Sign Up"}></Heading>
                     <SubHeading label={"Enter your information to create an account"}></SubHeading>
-                    <InputBox label={"First Name"} placeholder={"John"}></InputBox>
-                    <InputBox label={"Last Name"} placeholder={"Doe"}></InputBox>
-                    <InputBox label={"Email"} placeholder={"demo@gmail.com"}></InputBox>
+                    <InputBox label={"First Name"} placeholder={"Enter First Name"}></InputBox>
+                    <InputBox label={"Last Name"} placeholder={"Enter Last Name"}></InputBox>
+                    <InputBox label={"Email"} placeholder={"Enter Email Here"}></InputBox>
                     <InputBox label={"Password"} placeholder={"Enter Password"}></InputBox>
                     <div className="pt-4">
                         <Button label={"Sign Up"}></Button>
