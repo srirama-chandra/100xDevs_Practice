@@ -1,6 +1,6 @@
-import { AppBar } from "./AppBar";
-import { Balance } from "./Balance";
-import { Users } from "./Users";
+import { AppBar } from "../components/AppBar";
+import { Balance } from "../components/Balance";
+import { Users } from "../components/Users";
 
 export function Dashboard()
 {
