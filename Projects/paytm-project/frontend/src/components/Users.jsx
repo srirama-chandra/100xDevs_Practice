@@ -4,14 +4,30 @@ import { User } from "./User";
 
 export function Users()
 {
-    const [users,setUsers]=useState([{_id:1,firstname:"Harkirat",lastname:"Singh"},{_id:2,firstname:"Harkirat",lastname:"Singh"},{_id:3,firstname:"Ramesh",lastname:"Singh"}]);
+    const [users,setUsers]=useState([]);
     const [filter,setFilter]=useState("");
+    const [id,setId]=useState("");
 
     useEffect(()=>{
-        
-        axios.get(`http://localhost:3000/api/v1/user/bulk?filter=${filter}`).then((res)=>setUsers(res.data.users));
+            axios.get("http://localhost:3000/api/v1/user/id",{
+                headers:{
+                    Authorization:localStorage.getItem("token")
+                }
+            }).then((res)=> setId(res.data.id));
+    },[]);
 
-    },[filter])
+    useEffect(()=>{
+
+        axios.get(`http://localhost:3000/api/v1/user/bulk?filter=${filter}`).then((res)=>{
+
+            const users = res.data.users;
+            const filteredUsers = users.filter(user => user._id != id);
+            setUsers(filteredUsers);
+        });
+
+    },[id, filter]);
+
+    
 
     return <div className="mt-6">
         <div className="font-bold text-lg">Users</div>
