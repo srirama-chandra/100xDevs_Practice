@@ -81,4 +81,9 @@ userRouter.get("/bulk",async(req,res)=>{
 
 });
 
+userRouter.get("/id",authMiddleware,async(req,res)=>{
+
+    res.json({id:req.userId});
+});
+
 module.exports={userRouter}
