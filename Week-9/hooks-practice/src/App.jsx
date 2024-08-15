@@ -1,36 +1,26 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 
-function App() {
+function useIsOnline()
+{
+  const [isOnline,setIsOnline] = useState(window.navigator.onLine);
 
-  const [render, setRender] = useState(true);
+  useEffect(() => {
 
-  useEffect(()=>{
-
-    setInterval(() => setRender(r => !r),5000);
-
+    window.addEventListener('online',() => setIsOnline(true));
+    window.addEventListener('offline',() => setIsOnline(false));
   },[])
 
-  return (
-    <>
-        { render ? <MyComponent/> : <div></div>}
-    </>
-  )
+  return isOnline;
 }
 
-function MyComponent()
-{
-    useEffect(()=>{
+function App() {
 
-      console.log("Component Mounted");
+    const isOnline = useIsOnline();
 
-      return ()=>{
-        console.log("Component Unmounted");
-      }
-    },[]);
-
-
-    return <div> My Component</div>
+    if(isOnline) return <div>Online</div>
+    return <div>Offline</div>
 }
+
 
 export default App
