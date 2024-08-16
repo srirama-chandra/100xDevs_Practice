@@ -4,7 +4,9 @@ import './App.css'
 function useMouseLocation()
 { 
     const [mouseLocation,setMouseLocation] = useState({x:0,y:0});
-    window.addEventListener('mousemove',(e) => setMouseLocation({x:e.clientX,y:e.clientY}));
+    useEffect(()=>{
+      window.addEventListener('mousemove',(e) => setMouseLocation({x:e.clientX,y:e.clientY}));
+    },[])
     return mouseLocation;
 }
 
