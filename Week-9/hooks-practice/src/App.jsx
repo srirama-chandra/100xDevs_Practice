@@ -1,25 +1,18 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 
-function useIsOnline()
-{
-  const [isOnline,setIsOnline] = useState(window.navigator.onLine);
-
-  useEffect(() => {
-
-    window.addEventListener('online',() => setIsOnline(true));
-    window.addEventListener('offline',() => setIsOnline(false));
-  },[])
-
-  return isOnline;
+function useMouseLocation()
+{ 
+    const [mouseLocation,setMouseLocation] = useState({x:0,y:0});
+    window.addEventListener('mousemove',(e) => setMouseLocation({x:e.clientX,y:e.clientY}));
+    return mouseLocation;
 }
 
 function App() {
 
-    const isOnline = useIsOnline();
+    const mousePointer = useMouseLocation();
 
-    if(isOnline) return <div>Online</div>
-    return <div>Offline</div>
+    return <div>Mouse {mousePointer.x} : {mousePointer.y}</div>
 }
 
 
