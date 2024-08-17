@@ -1,6 +1,5 @@
 "use strict";
-function sum(a, b) {
-    return a + b;
+function runAfter1S(fn) {
+    setTimeout(fn, 1000);
 }
-const value = sum(1, 3);
-console.log(value);
+runAfter1S(() => { console.log("Hi There"); });

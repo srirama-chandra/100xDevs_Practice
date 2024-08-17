@@ -1,8 +1,7 @@
 
-function sum(a:number, b:number) : number{
-    return a+b;
+function runAfter1S(fn: () => void)
+{
+    setTimeout(fn,1000);
 }
 
-const value= sum(1,3);
-
-console.log(value);
+runAfter1S(()=>{console.log("Hi There")});
