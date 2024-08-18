@@ -1,12 +1,27 @@
-interface User{
-    name:string,
-    age:number
+
+interface Person{
+    name:string;
+    age:number;
+    greet(phrase:string):void;
 }
 
-function isLegal(user : User):boolean
-{
-    if(user.age > 18) return true;
-    return false;
+class Employee implements Person{
+
+    name:string;
+    age:number;
+
+    constructor(n:string,a:number)
+    {
+        this.name=n;
+        this.age=a;
+    }
+
+    greet(phrase: string): void {
+        console.log(`${phrase} ${this.name}`);
+    }
+
 }
 
-console.log(isLegal({name:"Ramesh",age:18}))
+const e1 = new Employee("Ramesh",20);
+
+e1.greet("Welcome");
