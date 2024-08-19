@@ -1,7 +1,7 @@
 
-function runAfter1S(fn : () => void)
+function runAfter1S(fn : (a:number) => void,a:number)
 {
-    setTimeout(fn,2000);
+    setTimeout(() => fn(a),2000);
 }
 
-runAfter1S(()=>{console.log("Hello User")});
+runAfter1S((a:number)=>{console.log(a)},40);

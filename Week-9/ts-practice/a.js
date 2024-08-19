@@ -1,5 +1,5 @@
 "use strict";
-function runAfter1S(fn) {
-    setTimeout(fn, 2000);
+function runAfter1S(fn, a) {
+    setTimeout(() => fn(a), 2000);
 }
-runAfter1S(() => { console.log("Hello User"); });
+runAfter1S((a) => { console.log(a); }, 40);
