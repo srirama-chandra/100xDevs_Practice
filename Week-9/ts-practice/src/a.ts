@@ -10,8 +10,7 @@ type dob = {
 
 type newType = person & dob ;
 
-const user1 : newType = {
-    name:"Ramesh",
-    age:21,
-    year:2023,
-}
+type stringOrNumber = number | string;
+
+let id : stringOrNumber = "id123";
+id = 123;
