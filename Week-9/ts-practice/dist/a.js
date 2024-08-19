@@ -1,7 +1,6 @@
 "use strict";
-function isLegal(user) {
-    if (user.age > 18)
-        return true;
-    return false;
-}
-console.log(isLegal({ name: "Harish", age: 18 }));
+const user1 = {
+    name: "Ramesh",
+    age: 21,
+    year: 2023,
+};

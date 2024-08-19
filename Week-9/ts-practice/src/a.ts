@@ -1,13 +1,17 @@
 
-interface User{
+type person = {
     name:string;
     age:number;
 }
-
-function isLegal(user:User)
-{
-    if(user.age > 18) return true;
-    return false;
+type dob = {
+    name:string;
+    year:number;
 }
 
-console.log(isLegal({name:"Harish",age:18}));
+type newType = person & dob ;
+
+const user1 : newType = {
+    name:"Ramesh",
+    age:21,
+    year:2023,
+}
