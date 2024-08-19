@@ -1,5 +1,7 @@
 
-function greet(firstName : string):void
+function runAfter1S(fn : () => void)
 {
-    console.log("Hello "+firstName);
+    setTimeout(fn,2000);
 }
+
+runAfter1S(()=>{console.log("Hello User")});

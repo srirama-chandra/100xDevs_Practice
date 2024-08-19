@@ -1,4 +1,5 @@
 "use strict";
-function greet(firstName) {
-    console.log("Hello " + firstName);
+function runAfter1S(fn) {
+    setTimeout(fn, 2000);
 }
+runAfter1S(() => { console.log("Hello User"); });
