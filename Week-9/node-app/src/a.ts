@@ -1,17 +1,7 @@
 
-enum inputEnum{
-   Up,
-   Down,
-   Left,
-   Right
+function firstElement<T>(arr : T[]) : T{
+   return arr[0];
 }
 
-function doSomething(input : inputEnum){
-
-   if(input === inputEnum.Left)
-   {
-
-   }
-}
-
-doSomething(inputEnum.Left);
+const value = firstElement<string>(["user1","user2"]);
+console.log(value.toUpperCase());
