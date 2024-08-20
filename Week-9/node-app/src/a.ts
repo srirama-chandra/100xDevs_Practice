@@ -1,6 +1,17 @@
- type User = {
-    name:string;
-    age:number;
- }
 
- const user : User = {name:"HI",age:12}
+enum inputEnum{
+   Up,
+   Down,
+   Left,
+   Right
+}
+
+function doSomething(input : inputEnum){
+
+   if(input === inputEnum.Left)
+   {
+
+   }
+}
+
+doSomething(inputEnum.Left);
