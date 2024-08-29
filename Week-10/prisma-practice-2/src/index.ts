@@ -92,4 +92,27 @@ async function deleteUnpublishedPosts(email:string) {
     console.log("unpublished posts deleted successfully");
     
 }
-deleteUnpublishedPosts("user3@gmail.com");
+
+async function findUsersWhoPostedAtleastaPost() {
+
+    const response = await prisma.user.findMany({
+      where:{
+        posts:{
+            some:{
+                published:true
+            }
+        }
+      },
+      include:{
+        posts:{
+            where:{
+                published:true
+            }
+        }
+      }
+   });
+   console.log(response);
+   
+}
+
+findUsersWhoPostedAtleastaPost();

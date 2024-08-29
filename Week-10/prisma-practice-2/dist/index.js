@@ -90,4 +90,25 @@ function deleteUnpublishedPosts(email) {
         console.log("unpublished posts deleted successfully");
     });
 }
-deleteUnpublishedPosts("user3@gmail.com");
+function findUsersWhoPostedAtleastaPost() {
+    return __awaiter(this, void 0, void 0, function* () {
+        const response = yield prisma.user.findMany({
+            where: {
+                posts: {
+                    some: {
+                        published: true
+                    }
+                }
+            },
+            include: {
+                posts: {
+                    where: {
+                        published: true
+                    }
+                }
+            }
+        });
+        console.log(response);
+    });
+}
+findUsersWhoPostedAtleastaPost();
