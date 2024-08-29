@@ -75,4 +75,21 @@ async function deleteUser(email:string) {
     
 }
 
-deleteUser("user1@gmail.com");
+async function deleteUnpublishedPosts(email:string) {
+
+     await prisma.user.update({
+       where:{
+        email:email
+       },
+      data:{
+        posts:{
+            deleteMany:{
+                published:false
+            }
+        }
+      }
+    });
+    console.log("unpublished posts deleted successfully");
+    
+}
+deleteUnpublishedPosts("user3@gmail.com");

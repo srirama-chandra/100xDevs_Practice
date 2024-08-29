@@ -73,4 +73,21 @@ function deleteUser(email) {
         console.log(response.name, "deleted successfully");
     });
 }
-deleteUser("user1@gmail.com");
+function deleteUnpublishedPosts(email) {
+    return __awaiter(this, void 0, void 0, function* () {
+        yield prisma.user.update({
+            where: {
+                email: email
+            },
+            data: {
+                posts: {
+                    deleteMany: {
+                        published: false
+                    }
+                }
+            }
+        });
+        console.log("unpublished posts deleted successfully");
+    });
+}
+deleteUnpublishedPosts("user3@gmail.com");
