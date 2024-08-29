@@ -43,4 +43,34 @@ function findUser(email) {
         console.log(response);
     });
 }
-findUser("user3@gmail.com");
+function updateUser(email, name) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const response = yield prisma.user.update({
+            where: {
+                email: email
+            },
+            data: {
+                name: name
+            },
+            select: {
+                name: true
+            }
+        });
+        console.log(response);
+        console.log(response.name, "name updated successfully");
+    });
+}
+function deleteUser(email) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const response = yield prisma.user.delete({
+            where: {
+                email: email
+            },
+            select: {
+                name: true
+            }
+        });
+        console.log(response.name, "deleted successfully");
+    });
+}
+deleteUser("user1@gmail.com");
