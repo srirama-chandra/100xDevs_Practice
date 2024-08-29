@@ -30,4 +30,17 @@ function createUser(obj) {
         console.log("User Created", response);
     });
 }
-createUser({ name: "User3", email: "user3@gmail.com", password: "password" });
+function findUser(email) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const response = yield prisma.user.findUnique({
+            where: {
+                email: email
+            },
+            include: {
+                posts: true
+            }
+        });
+        console.log(response);
+    });
+}
+findUser("user3@gmail.com");

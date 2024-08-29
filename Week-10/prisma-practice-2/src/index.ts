@@ -28,4 +28,18 @@ async function createUser(obj:user) {
     
 }
 
-createUser({name:"User3",email:"user3@gmail.com",password:"password"});
+async function findUser(email:string) {
+
+    const response = await prisma.user.findUnique({
+       where:{
+        email:email
+       },
+       include:{
+        posts:true
+       }
+    });
+    console.log(response);
+    
+}
+
+findUser("user3@gmail.com");
