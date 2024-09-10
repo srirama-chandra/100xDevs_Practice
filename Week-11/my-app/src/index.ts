@@ -20,4 +20,16 @@ app.post("/demo",async (c)=>{
 
 })
 
+app.get('/red',async (c)=>{
+  return c.html(`<body style="background-color:#f18973"></body>`)
+});
+
+app.get('/blue',async (c)=>{
+  return c.html(`<body style="background-color:#80ced6"></body>`)
+});
+
+app.get('/green',async (c)=>{
+  return c.html(`<body style="background-color:#90EE90"></body>`)
+});
+
 export default app
