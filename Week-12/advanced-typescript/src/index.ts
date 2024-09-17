@@ -1,14 +1,7 @@
 
-type User = {
-    [key:string]:number;
-}
+const users = new Map<number,string>();
 
+users.set(1,"User1");
+users.set(2,"User2");
 
-// More Cleaner Syntax Using Record
-
-type UserRecord = Record<string,number>
-
-const userData: UserRecord = {
-    "id1":1,
-    "id2":2
-}
+console.log(users.get(1));
