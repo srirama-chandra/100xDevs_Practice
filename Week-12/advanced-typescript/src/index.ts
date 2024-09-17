@@ -1,7 +1,11 @@
 
-const users = new Map<number,string>();
+type EventType = 'click' | 'scroll' | 'mousemove' ;
 
-users.set(1,"User1");
-users.set(2,"User2");
+type ExcludedType = Exclude<EventType,'mousemove'>;
 
-console.log(users.get(1));
+function displayEvent(event:ExcludedType)
+{
+    console.log(event);
+}
+
+displayEvent("scroll");
