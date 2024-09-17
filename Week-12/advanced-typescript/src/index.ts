@@ -8,7 +8,11 @@ interface User {
 
 type updatedProps = Pick<User,'name'|'password'>
 
-function updateUser(props:updatedProps)
+type optionalTypes = Partial<updatedProps>
+
+function updateUser(props:optionalTypes)
 {
-    console.log(props.name+" "+props.password);
+    console.log(props.name);
 }
+
+updateUser({name:"hi"})
