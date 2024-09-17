@@ -1,11 +1,10 @@
 
-type EventType = 'click' | 'scroll' | 'mousemove' ;
+import {z} from 'zod'
 
-type ExcludedType = Exclude<EventType,'mousemove'>;
+let userZodSchema = z.object({name:z.string(),
+                              age:z.number().optional()
+                            });
 
-function displayEvent(event:ExcludedType)
-{
-    console.log(event);
-}
+type userType = z.infer<typeof userZodSchema>
 
-displayEvent("scroll");
+// Now userType is infered based on the zodSchema defined.
