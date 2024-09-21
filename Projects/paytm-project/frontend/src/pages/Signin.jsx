@@ -10,8 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 export function Signin()
 {
-    const [username,setUserName]=useState("");
-    const [password,setPassword]=useState("");
+    
     const navigate=useNavigate();
 
     return <div className="flex justify-center items-center text-center bg-slate-300 h-screen">
@@ -19,8 +18,7 @@ export function Signin()
         <div className="bg-white rounded-lg h-max w-80 px-4 p-2 text-center">
             <Heading label={"Sign In"}></Heading>
             <SubHeading label={"Enter your credentials to access your account"}></SubHeading>
-            <InputBox label={"Email"} onchange={(e)=>setUserName(e.target.value)} placeholder={"Enter Email Here"}></InputBox>
-            <InputBox label={"Password"} onchange={(e)=>setPassword(e.target.value)} placeholder={"Enter Password Here"}></InputBox>
+            <EmailAndPassword></EmailAndPassword>
             <div className="pt-4">
                 <Button label={"Sign In"} onClick={async()=>{
                     const response=await axios.post("http://localhost:3000/api/v1/user/signin",{
@@ -34,5 +32,15 @@ export function Signin()
             <BottomComponent label={"Don't have an account ?"} buttonText={"Sign Up"} to={"/signup"}></BottomComponent>
         </div>
 
+    </div>
+}
+
+function EmailAndPassword()
+{
+    const [username,setUserName]=useState("");
+    const [password,setPassword]=useState("");
+    return <div>
+        <InputBox label={"Email"} onchange={(e)=>setUserName(e.target.value)} placeholder={"Enter Email Here"}></InputBox>
+        <InputBox label={"Password"} onchange={(e)=>setPassword(e.target.value)} placeholder={"Enter Password Here"}></InputBox>
     </div>
 }
