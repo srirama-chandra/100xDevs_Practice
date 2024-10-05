@@ -1,25 +1,16 @@
-import { useEffect, useState } from "react"
+import { useRecoilValue } from "recoil";
 import { AppBar } from "../components/AppBar"
-import { BlogCard, BlogCardProps } from "../components/BlogCard"
-import axios from "axios";
-import { BACKEND_URL } from "../config";
+import { BlogCard } from "../components/BlogCard"
+import { AllBlogsAtom } from "../store/atoms/AllBlogsAtom";
 
 export const Blogs = () => {
 
-    const [blogData,setBlogData] = useState<BlogCardProps[]>([]);
-    
-    useEffect(()=>{
-        axios.get(`${BACKEND_URL}/blog/bulk`,{
-            headers:{
-                Authorization : localStorage.getItem("token"),
-            }
-        }).then( response => setBlogData(response.data.posts))
-    },[]);
+    const blogData = useRecoilValue(AllBlogsAtom);
 
     return (
         <div>
             <AppBar/>
-            <div className="mt-8 grid grid-cols-12">
+            <div className="mt-8 mb-4 grid grid-cols-12">
                 <div className="col-span-2"></div>
 
                 <div className="col-span-7">
@@ -27,7 +18,7 @@ export const Blogs = () => {
                         Latest
                     </div>
                     <div className="mt-4">
-                        {blogData.map( res => <BlogCard key={res.title} title={res.title} authorName="Hello" content={res.content} publishedDate="Oct 1"/>)}
+                        {blogData.map( res => <BlogCard key={res.id} id={res.id} title={res.title} author={res.author} content={res.content} authodId={res.authodId} publishedDate="Oct 1"/>)}
                     </div>
                 </div>
 
