@@ -5,7 +5,9 @@ import { Blogs } from "./pages/Blogs"
 import { Post } from "./pages/Post"
 import { FullBlog } from "./pages/FullBlog"
 import { RecoilRoot } from "recoil"
-import { ProfileComponent } from "./components/ProfileComponent"
+import { MyBlogs } from "./pages/MyBlogs"
+import { Logout } from "./pages/Logout"
+import { LandingPage } from "./pages/LandingPage"
 
 
 export default function App() {
@@ -16,12 +18,14 @@ export default function App() {
             
               <BrowserRouter>
                 <Routes>
+                  <Route path="/" element={<LandingPage/>}></Route>
                   <Route path="/signin" element={<Signin></Signin>}></Route>
                   <Route path="/signup" element={<Signup></Signup>}></Route>
                   <Route path="/blogs" element={<Blogs></Blogs>}></Route>
                   <Route path="/blog/:id" element={<FullBlog></FullBlog>}></Route>
                   <Route path="/post" element={<Post></Post>}></Route>
-                  <Route path="/animation" element={<ProfileComponent/>}></Route>
+                  <Route path="/myblogs" element={<MyBlogs/>}></Route>
+                  <Route path="/logout" element={<Logout/>}></Route>
                 </Routes>
               </BrowserRouter>
 
