@@ -5,7 +5,7 @@ import { Blogs } from "./pages/Blogs"
 import { Post } from "./pages/Post"
 import { FullBlog } from "./pages/FullBlog"
 import { RecoilRoot } from "recoil"
-import { Suspense } from "react"
+import { ProfileComponent } from "./components/ProfileComponent"
 
 
 export default function App() {
@@ -13,7 +13,7 @@ export default function App() {
     <>
         
           <RecoilRoot>
-            <Suspense fallback={<div> Loading</div>}>
+            
               <BrowserRouter>
                 <Routes>
                   <Route path="/signin" element={<Signin></Signin>}></Route>
@@ -21,9 +21,10 @@ export default function App() {
                   <Route path="/blogs" element={<Blogs></Blogs>}></Route>
                   <Route path="/blog/:id" element={<FullBlog></FullBlog>}></Route>
                   <Route path="/post" element={<Post></Post>}></Route>
+                  <Route path="/animation" element={<ProfileComponent/>}></Route>
                 </Routes>
               </BrowserRouter>
-            </Suspense>
+
           </RecoilRoot>
         
     </>

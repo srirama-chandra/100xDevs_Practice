@@ -2,14 +2,21 @@ import { AppBar } from "../components/AppBar"
 import { Heading } from "../components/Heading"
 import { useParams } from "react-router-dom"
 import { BlogCardProps } from "../components/BlogCard"
-import { useRecoilValue } from "recoil"
+import { useRecoilValueLoadable } from "recoil"
 import { BlogAtomFamily } from "../store/atoms/BlogWithIdAtomFamily"
+import { FullBlogSkeleton } from "../components/FullBlogSkeleton"
 
 export const FullBlog = () => {
 
     const { id } =  useParams<{id:string}>();
 
-    const fullBlogData = useRecoilValue<BlogCardProps>(BlogAtomFamily(Number(id)));
+    const response = useRecoilValueLoadable<BlogCardProps>(BlogAtomFamily(Number(id)));
+
+    if(response.state==="loading"){
+        return <FullBlogSkeleton/>
+    }
+
+    const fullBlogData = response.contents;
 
     return <div className="mb-6">
 
@@ -22,7 +29,7 @@ export const FullBlog = () => {
                     <Heading label={fullBlogData.title}></Heading>
                 </div>
                 <div className="mt-4">
-                    {fullBlogData.content.split('\n\n').map((data:any,index:any) => <div key={index}>{data}<br/><br/></div>)}
+                    {fullBlogData.content.split('\n\n').map((data:string,index:number) => <div key={index}>{data}<br/><br/></div>)}
                 </div>
             </div>
 
