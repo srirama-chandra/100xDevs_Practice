@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { Button } from "../components/Button"
 import { Footer } from "../components/Footer"
 import { Heading } from "../components/Heading"
@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom"
 export const Signup = () => {
 
     const navigate = useNavigate();
+    const divRef = useRef<any>(null);
 
     const [signUpInput,setSignUpInput] = useState<signUpType>({name:"",username:"",password:""});
 
@@ -22,13 +23,25 @@ export const Signup = () => {
         try{
 
             const response = await axios.post(`${BACKEND_URL}/user/signup`,signUpInput);
+            console.log(response);
             localStorage.setItem("token",response.data.token);
             navigate('/blogs')
         }
-        catch(e)
+        catch(e:any)
         {
-            console.log(e);
-            alert("Error While Signing Up");
+            if (e.response && e.response.data.msg == "User Already Exists") {
+                if (divRef.current) {
+                    divRef.current.innerText = "User Already Exists!! Please Signin";
+                }
+            } else if (e.response && e.response.data.msg === "Invalid Input") {
+                if (divRef.current) {
+                    divRef.current.innerText = "Invalid Input";
+                }
+            } else {
+                if (divRef.current) {
+                    divRef.current.innerText = "Something Went Wrong";
+                }
+            }
         }
     }
 
@@ -43,6 +56,7 @@ export const Signup = () => {
                 <InputBox label="Password" placeholder="Enter your password" type="password" onChange={(e) => {setSignUpInput({...signUpInput,password:e.target.value})}}></InputBox>
                 <Button type="submit" label="Sign Up"></Button>
                 <Footer label="Already have an account? " linkText="Sign in" to="/signin"></Footer>
+                <div className="text-red-500  font-bold h-3 w-min-fit" ref={divRef}></div>
             </div>
         </div>
         </form>

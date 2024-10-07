@@ -1,6 +1,6 @@
 import { signInType } from "@sriramachandra/medium-common";
 import axios from "axios";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { BACKEND_URL } from "../config";
 import { Heading } from "../components/Heading";
@@ -14,6 +14,8 @@ export const Signin = () => {
 
     const navigate = useNavigate();
 
+    const signInRef = useRef<any>();
+
     const [signInInput,setSignInInput] = useState<signInType>({username:"",password:""});
 
     async function signInRequest(e:React.FormEvent)
@@ -23,13 +25,27 @@ export const Signin = () => {
 
             const response = await axios.post(`${BACKEND_URL}/user/signin`,signInInput);
             localStorage.setItem("token",response.data.token);
-            
             navigate('/blogs');
         }
-        catch(e)
+        catch(e:any)
         {
-            console.log(e);
-            alert("Error While Signing In");
+            if (e.response && e.response.data.msg == "Incorrect Password") {
+                if (signInRef.current) {
+                    signInRef.current.innerText = "Incorrect Password !!";
+                }
+            } else if (e.response && e.response.data.msg === "User Not Found") {
+                if (signInRef.current) {
+                    signInRef.current.innerText = "User Not Found !! Please Signup";
+                }
+            }else if (e.response && e.response.data.msg === "Invalid Input") {
+                if (signInRef.current) {
+                    signInRef.current.innerText = "Invalid Input";
+                }
+            } else {
+                if (signInRef.current) {
+                    signInRef.current.innerText = "Something Went Wrong";
+                }
+            }
         }
     }
 
@@ -43,6 +59,7 @@ export const Signin = () => {
                     <InputBox label="Password" placeholder="Enter your password" type="password" onChange={(e) => {setSignInInput({...signInInput,password:e.target.value})}}></InputBox>
                     <Button type="submit" label="Sign In"></Button>
                     <Footer label="Don't have an account? " linkText="Sign up" to="/signup"></Footer>
+                    <div className="h-3 w-min-fit text-red-500 font-bold" ref={signInRef}></div>
                 </div>
             </div>
             </form>
