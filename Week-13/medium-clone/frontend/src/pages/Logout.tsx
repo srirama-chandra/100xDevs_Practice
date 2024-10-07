@@ -1,16 +1,31 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { VerySmallSpinner } from "../components/Spinners";
+import { useResetRecoilState } from "recoil";
+import { AllBlogsAtom } from "../store/atoms/AllBlogsAtom";
+import { MyBlogsAtom } from "../store/atoms/MyBlogsAtom";
+
 
 
 export const Logout = () => {
     
     const navigate = useNavigate();
 
+    const resetAllBlogsAtom = useResetRecoilState(AllBlogsAtom);
+    const resetMyBlogsAtom = useResetRecoilState(MyBlogsAtom);
+
     useEffect(()=>{
+        
+        resetAllBlogsAtom();
+        resetMyBlogsAtom();
+
         localStorage.removeItem("token");
 
-        setTimeout(()=>{navigate('/signin')},3000);
+        const timeOutId = setTimeout(()=>{navigate('/signin');navigate(0)},3000);
+
+        return () => {
+            clearTimeout(timeOutId);
+        }
 
     },[])
 

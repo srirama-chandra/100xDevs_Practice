@@ -9,6 +9,7 @@ import { Button } from "../components/Button";
 import { Footer } from "../components/Footer";
 import { Quote } from "../components/Quote";
 
+
 export const Signin = () => {
 
     const navigate = useNavigate();
@@ -18,6 +19,7 @@ export const Signin = () => {
     async function signInRequest()
     {
         try{
+
             const response = await axios.post(`${BACKEND_URL}/user/signin`,signInInput);
             localStorage.setItem("token",response.data.token);
             navigate('/blogs');

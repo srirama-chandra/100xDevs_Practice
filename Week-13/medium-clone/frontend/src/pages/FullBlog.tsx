@@ -3,14 +3,14 @@ import { Heading } from "../components/Heading"
 import { useParams } from "react-router-dom"
 import { BlogCardProps } from "../components/BlogCard"
 import { useRecoilValueLoadable } from "recoil"
-import { BlogAtomFamily } from "../store/atoms/BlogWithIdAtomFamily"
+import { BlogWithIdAtomFamily } from "../store/atoms/BlogWithIdAtomFamily"
 import { FullBlogSkeleton } from "../components/FullBlogSkeleton"
 
 export const FullBlog = () => {
 
     const { id } =  useParams<{id:string}>();
 
-    const response = useRecoilValueLoadable<BlogCardProps>(BlogAtomFamily(Number(id)));
+    const response = useRecoilValueLoadable<BlogCardProps>(BlogWithIdAtomFamily(Number(id)));
 
     if(response.state==="loading"){
         return <FullBlogSkeleton/>

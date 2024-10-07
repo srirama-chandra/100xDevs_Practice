@@ -36,6 +36,7 @@ export const Blogs = () => {
 
     return (
         <div>
+            
             <AppBar/>
             <div className="mt-8 mb-4 grid grid-cols-12">
                 <div className="col-span-2"></div>
@@ -52,6 +53,5 @@ export const Blogs = () => {
                 <div className="col-span-3"></div>
             </div>
         </div>
-
     )
 }

@@ -20,7 +20,7 @@ export const Signup = () => {
         try{
             const response = await axios.post(`${BACKEND_URL}/user/signup`,signUpInput);
             localStorage.setItem("token",response.data.token);
-            navigate('/blogs');
+            navigate('/blogs')
         }
         catch(e)
         {
