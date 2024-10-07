@@ -18,9 +18,9 @@ export const Logout = () => {
         
         resetAllBlogsAtom();
         resetMyBlogsAtom();
-
+        
         localStorage.removeItem("token");
-
+        
         const timeOutId = setTimeout(()=>{navigate('/signin');navigate(0)},3000);
 
         return () => {

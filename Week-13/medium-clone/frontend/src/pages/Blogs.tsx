@@ -6,9 +6,14 @@ import { BlogSkeleton } from "../components/BlogSkeleton";
 
 export const Blogs = () => {
 
+
     const response = useRecoilValueLoadable(AllBlogsAtom);
 
-    if(response.state==="loading"){
+    if(response.state==="hasError")
+    {
+        return <div>Something Went Wrong</div>
+    }
+    else if(response.state==="loading"){
         return <div>
                     <AppBar/>
                     <div className="mt-8 mb-4 grid grid-cols-12">
@@ -32,7 +37,7 @@ export const Blogs = () => {
                 </div>
     }
 
-    const blogData:BlogCardProps[] = response.contents;
+    const blogData:BlogCardProps[] = response.contents || [];
 
     return (
         <div>
@@ -46,12 +51,13 @@ export const Blogs = () => {
                         Latest
                     </div>
                     <div className="mt-4">
-                        {blogData.map( res => <BlogCard key={res.id} id={res.id} title={res.title} author={res.author} content={res.content} authodId={res.authodId} publishedDate="Oct 1"/>)}
+                        { blogData.map ( res => <BlogCard key={res.id} id={res.id} title={res.title} author={res.author} content={res.content} authodId={res.authodId} publishedDate="Oct 1"/>)}
                     </div>
                 </div>
 
                 <div className="col-span-3"></div>
             </div>
+
         </div>
     )
 }
