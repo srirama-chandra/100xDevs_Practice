@@ -7,7 +7,7 @@ import { signupZodSchema, signinZodSchema} from '@sriramachandra/medium-common'
 export const userRouter = new Hono<{
     Bindings:{
         DATABASE_URL:string,
-        JWT_SECRET:string
+        JWT_SECRET:string,
     }
 }>();
 
@@ -23,11 +23,24 @@ userRouter.post('/signup', async (c) => {
 
     if(!success)
     {
+      c.status(400);
       return c.json({msg:"Invalid Input"});
     }
 
     try{
-  
+      
+      const isUserPresent = await prisma.user.findFirst({
+        where:{
+          username:body.username
+        }
+      })
+
+      if(isUserPresent)
+      {
+         c.status(400);
+         return c.json({msg:"User Already Exists"})
+      }
+
       const response =await prisma.user.create({
         data:{
           name:body.name,
@@ -37,13 +50,14 @@ userRouter.post('/signup', async (c) => {
       })
     
       const token = await sign({userId:response.id},c.env.JWT_SECRET);
-  
+
       return c.json({token,});
       
     }
     catch(e)
     {
-      return c.json({msg:"Internal Error"});
+      c.status(500);
+      return c.json({msg:"Something Went Wrong!! Please Try Again Later"});
     }
   
   })
@@ -61,6 +75,7 @@ userRouter.post('/signin', async (c) => {
 
     if(!success)
     {
+      c.status(400);
       return c.json({msg:"Invalid Input"});
     }
   
@@ -74,16 +89,29 @@ userRouter.post('/signin', async (c) => {
   
     if(!user)
     {
+      const user = await prisma.user.findFirst({
+        where:{
+          username:body.username,
+        }
+      });
+      if(user)
+      {
+        c.status(400);
+        return c.json({"msg":"Incorrect Password"})
+      }
+      c.status(400);
+
       return c.json({msg:"User Not Found"});
     }
   
     const token = await sign({userId:user.id},c.env.JWT_SECRET);
-  
+    
     return c.json({token,});
   
     }
     catch(e)
     {
+      c.status(500);
       return c.json({msg:"Internal Error"});
     }
   

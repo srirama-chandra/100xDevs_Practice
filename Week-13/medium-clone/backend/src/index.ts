@@ -9,13 +9,13 @@ const app = new Hono<{
     JWT_SECRET:string
   }
   Variables:{
-    userId:number
+    userId:number,
   }
 }>();
 
 app.use('/*',cors());
 app.route("/api/v1/user",userRouter);
-app.route("/api/v1/blog/",blogRouter);
+app.route("/api/v1/blog",blogRouter);
 
 
 
