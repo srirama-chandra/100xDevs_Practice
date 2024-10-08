@@ -4,8 +4,8 @@ compatibility_flags = [ "nodejs_compat" ]
 main="./src/index.ts"
 
 [vars]
-DATABASE_URL="url here"
-JWT_SECRET="secret-here"
+DATABASE_URL=""
+JWT_SECRET=""
 
 # [[kv_namespaces]]
 # binding = "MY_KV_NAMESPACE"

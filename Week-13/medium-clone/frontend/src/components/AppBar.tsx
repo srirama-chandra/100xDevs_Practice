@@ -11,7 +11,7 @@ export const AppBar = () => {
         <div className="flex justify-between px-8 py-4 border-b">
 
             <div className="flex items-center">
-                <Link to={'/blogs'}><div>Medium</div></Link>
+                <Link to={'/blogs'}><div>MyBlog</div></Link>
             </div>
 
             <div className="flex items-center">

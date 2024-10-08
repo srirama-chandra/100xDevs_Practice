@@ -2,13 +2,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { Signup } from "./pages/Signup"
 import { Signin } from "./pages/Signin"
 import { Blogs } from "./pages/Blogs"
-import { Post } from "./pages/Post"
 import { FullBlog } from "./pages/FullBlog"
 import { RecoilRoot } from "recoil"
 import { MyBlogs } from "./pages/MyBlogs"
-import { Logout } from "./pages/Logout"
 import { LandingPage } from "./pages/LandingPage"
 import { PageNotFound } from "./pages/PageNotFound"
+import { Post } from "./pages/Post"
+import { Logout } from "./pages/Logout"
 
 
 export default function App() {
