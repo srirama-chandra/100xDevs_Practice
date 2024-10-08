@@ -8,8 +8,13 @@ export const MyBlogsAtom = atom<BlogCardProps[]>({
     default: selector<BlogCardProps[]>({
         key:"MyBlogsAtomSelector",
         get: async () =>{
-        const response = await axios.get(`${BACKEND_URL}/blog/myblogs`,{headers:{Authorization:localStorage.getItem("token")}});
-        return response.data.posts;
+            try{
+                const response = await axios.get(`${BACKEND_URL}/blog/myblogs`,{headers:{Authorization:localStorage.getItem("token")}});
+                return response.data.posts;
+            }
+            catch(e:any){
+                throw new Error(e.response?.data?.msg || e.message);
+            }
         }
     })
 })

@@ -8,8 +8,13 @@ export const BlogWithIdAtomFamily = atomFamily<BlogCardProps,number>({
     default: selectorFamily<BlogCardProps,number>({
             key:"BlogWithIdSelectorFamily",
             get: (id:number) => async () =>{
-                const response = await axios.get(`${BACKEND_URL}/blog/${id}`,{headers:{Authorization:localStorage.getItem("token")}});
-                return response.data.post;
+                try{
+                    const response = await axios.get(`${BACKEND_URL}/blog/${id}`,{headers:{Authorization:localStorage.getItem("token")}});
+                    return response.data.post;
+                }
+                catch(e:any){
+                    throw new Error(e.response?.data?.msg || e.message);
+                }
             }
     })
 });

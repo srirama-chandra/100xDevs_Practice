@@ -16,7 +16,7 @@ export const AllBlogsAtom = atom<BlogCardProps[]>({
             }
             catch(e:any)
             {
-               console.log(e);
+                throw new Error(e.response?.data?.msg || e.message);
             }
         
         }

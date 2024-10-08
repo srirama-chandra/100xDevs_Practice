@@ -15,53 +15,67 @@ export const FullBlog = () => {
     if(response.state==="loading"){
         return <FullBlogSkeleton/>
     }
+    else if(response.state==="hasError")
+    {
+        if(response.contents.message=="Network Error")
+        {
+            return <div>Network Error !! Please Check Your Internet Connection</div>
+        }
+        else if(response.contents.message==="Authentication Failed"){
+            return <div>Your Are Forbidden To Access This Page</div>
+        }
+        else{
+            return <div>Something Went Wrong</div>
+        }
+    }
+    else if(response.state==="hasValue"){
+        
+        const fullBlogData = response.contents;
 
-    const fullBlogData = response.contents;
+        return <div className="mb-6">
 
-    return <div className="mb-6">
+            <AppBar/>
 
-        <AppBar/>
+            <div className="mt-8 grid grid-cols-12">
 
-        <div className="mt-8 grid grid-cols-12">
-
-            <div className="ml-14 col-span-8">
-                <div className="border-b pb-2">
-                    <Heading label={fullBlogData.title}></Heading>
-                </div>
-                <div className="mt-4">
-                    {fullBlogData.content.split('\n\n').map((data:string,index:number) => <div key={index}>{data}<br/><br/></div>)}
-                </div>
-            </div>
-
-            <div className="col-span-4 max-h-fit mt-12 ml-16 border mr-14 py-6 cursor-pointer rounded-xl ">
-
-                <div className="flex justify-center font-semibold">Author</div>
-
-                <div className="mt-4 flex justify-center">
-                    <div className="flex justify-center items-center font-semibold bg-slate-200 rounded-full w-12 h-12 text-md py-1 col-span-2 ">
-                        { fullBlogData.author.name.charAt(0).toUpperCase() }
+                <div className="ml-14 col-span-8">
+                    <div className="border-b pb-2">
+                        <Heading label={fullBlogData.title}></Heading>
+                    </div>
+                    <div className="mt-4">
+                        {fullBlogData.content.split('\n\n').map((data:string,index:number) => <div key={index}>{data}<br/><br/></div>)}
                     </div>
                 </div>
 
-                <div className="mt-2 text-sm text-slate-500 flex flex-col justify-center gap-2">
-                        
-                        <div className="flex justify-center">
-                            <div className="text-green-600 font-semibold">{fullBlogData.author.name}</div>
-                        </div>
+                <div className="col-span-4 max-h-fit mt-12 ml-16 border mr-14 py-6 cursor-pointer rounded-xl ">
 
-                        <div className="flex justify-center px-4 text-xs font-normal">
-                            <div>
-                                Random catch phrase about the author's ability to grab the user's attention
-                            </div>
+                    <div className="flex justify-center font-semibold">Author</div>
+
+                    <div className="mt-4 flex justify-center">
+                        <div className="flex justify-center items-center font-semibold bg-slate-200 rounded-full w-12 h-12 text-md py-1 col-span-2 ">
+                            { fullBlogData.author.name.charAt(0).toUpperCase() }
                         </div>
+                    </div>
+
+                    <div className="mt-2 text-sm text-slate-500 flex flex-col justify-center gap-2">
+                            
+                            <div className="flex justify-center">
+                                <div className="text-green-600 font-semibold">{fullBlogData.author.name}</div>
+                            </div>
+
+                            <div className="flex justify-center px-4 text-xs font-normal">
+                                <div>
+                                    Random catch phrase about the author's ability to grab the user's attention
+                                </div>
+                            </div>
+
+                    </div>
 
                 </div>
 
             </div>
 
+                        
         </div>
-
-                    
-    </div>
-
+    }
 }
