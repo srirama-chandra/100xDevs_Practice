@@ -36,8 +36,7 @@ export const Blogs = () => {
                     </div>
         }
         else if(response.state==="hasError")
-        {   
-            if(response.contents.message=="Network Error")
+        {   if(response.contents.message=="Network Error")
             {
                 return <div>Network Error !! Please Check Your Internet Connection</div>
             }
@@ -51,11 +50,6 @@ export const Blogs = () => {
         else if(response.state==="hasValue"){
     
             const blogData:BlogCardProps[] = response.contents;
-            
-            if(!blogData.length)
-            {
-                return <div>Something Went Wrong</div>
-            }
 
             return (
                 <div>
@@ -69,7 +63,9 @@ export const Blogs = () => {
                                 Latest
                             </div>
                             <div className="mt-4">
-                                { blogData.map ( res => <BlogCard key={res.id} id={res.id} title={res.title} author={res.author} content={res.content} authodId={res.authodId} publishedDate="Oct 1"/>)}
+                                
+                                { blogData.length === 0 ? <div className="flex justify-center mt-8"> No Blogs Found</div> : blogData.map ( res => <BlogCard key={res.id} id={res.id} title={res.title} author={res.author} content={res.content} authodId={res.authodId} publishedDate={res.publishedDate}/>)}
+
                             </div>
                         </div>
     

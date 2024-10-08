@@ -20,6 +20,7 @@ export const Signup = () => {
     async function signUpRequest(e:React.FormEvent)
     {
         e.preventDefault();
+
         try{
 
             const response = await axios.post(`${BACKEND_URL}/user/signup`,signUpInput);

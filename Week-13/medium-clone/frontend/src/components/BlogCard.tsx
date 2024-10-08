@@ -11,6 +11,8 @@ export interface BlogCardProps{
 
 export const BlogCard = ({author,id,title,content,publishedDate}:BlogCardProps) => {
 
+    const formattedDate = new Date(publishedDate).toLocaleDateString('en-US', { month: 'long', day: '2-digit' });
+    
     return (
         <Link to={`/blog/${id}`}>
             <div className="mt-8 pb-7 border-b cursor-pointer">
@@ -35,7 +37,7 @@ export const BlogCard = ({author,id,title,content,publishedDate}:BlogCardProps) 
                         </div>
 
                         <div className="flex items-center gap-1.5 text-xs font-normal">
-                            <div>{publishedDate}</div>
+                            <div>{formattedDate}</div>
                             <div className="h-0.5 w-0.5 bg-slate-400 rounded-full"></div>
                             <div>{ Math.ceil( content.length / 100 ) } min read</div>
                         </div>

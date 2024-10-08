@@ -19,10 +19,11 @@ export const Post = () => {
     async function publishPost(e:React.FormEvent){
         e.preventDefault();
         try{
-            await axios.post(`${BACKEND_URL}/blog/`,postInput,{headers:{
+            await axios.post(`${BACKEND_URL}/blog`,postInput,{headers:{
                 Authorization: localStorage.getItem("token"),
             }});
             navigate('/blogs');
+            navigate(0);
         }
         catch(e:any)
         {

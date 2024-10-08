@@ -7,8 +7,6 @@ export const AppBar = () => {
     const navigate = useNavigate();
     const [isHovered,setIsHovered] = useState<boolean>(false);
 
-
-
     return (
         <div className="flex justify-between px-8 py-4 border-b">
 
