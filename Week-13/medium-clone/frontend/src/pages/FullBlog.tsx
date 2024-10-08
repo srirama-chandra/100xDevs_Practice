@@ -5,6 +5,8 @@ import { BlogCardProps } from "../components/BlogCard"
 import { useRecoilValueLoadable } from "recoil"
 import { BlogWithIdAtomFamily } from "../store/atoms/BlogWithIdAtomFamily"
 import { FullBlogSkeleton } from "../components/FullBlogSkeleton"
+import { ForbiddenPage } from "./ForbiddenPage"
+import { SomethingWentWrongPage } from "./SomeThingWentWrongPage"
 
 export const FullBlog = () => {
 
@@ -22,10 +24,10 @@ export const FullBlog = () => {
             return <div>Network Error !! Please Check Your Internet Connection</div>
         }
         else if(response.contents.message==="Authentication Failed"){
-            return <div>Your Are Forbidden To Access This Page</div>
+            return <ForbiddenPage/>
         }
         else{
-            return <div>Something Went Wrong</div>
+            return <SomethingWentWrongPage/>
         }
     }
     else if(response.state==="hasValue"){

@@ -8,6 +8,7 @@ import { RecoilRoot } from "recoil"
 import { MyBlogs } from "./pages/MyBlogs"
 import { Logout } from "./pages/Logout"
 import { LandingPage } from "./pages/LandingPage"
+import { PageNotFound } from "./pages/PageNotFound"
 
 
 export default function App() {
@@ -26,6 +27,7 @@ export default function App() {
                   <Route path="/post" element={<Post></Post>}></Route>
                   <Route path="/myblogs" element={<MyBlogs/>}></Route>
                   <Route path="/logout" element={<Logout/>}></Route>
+                  <Route path="*" element={<PageNotFound/>}></Route>
                 </Routes>
               </BrowserRouter>
 

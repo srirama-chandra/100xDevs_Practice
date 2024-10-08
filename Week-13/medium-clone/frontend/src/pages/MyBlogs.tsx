@@ -3,6 +3,9 @@ import { AppBar } from "../components/AppBar"
 import { BlogCard, BlogCardProps } from "../components/BlogCard"
 import { BlogSkeleton } from "../components/BlogSkeleton";
 import { MyBlogsAtom } from "../store/atoms/MyBlogsAtom";
+import { NetworkErrorPage } from "./NetworkErrorPage";
+import { ForbiddenPage } from "./ForbiddenPage";
+import { SomethingWentWrongPage } from "./SomeThingWentWrongPage";
 
 export const MyBlogs = () => {
 
@@ -38,13 +41,13 @@ export const MyBlogs = () => {
         {
                 if(response.contents.message=="Network Error")
                 {
-                    return <div>Network Error !! Please Check Your Internet Connection</div>
+                    return <NetworkErrorPage/>
                 }
                 else if(response.contents.message==="Authentication Failed"){
-                    return <div>Your Are Forbidden To Access This Page</div>
+                    return <ForbiddenPage/>
                 }
                 else{
-                    return <div>Something Went Wrong</div>
+                    return <SomethingWentWrongPage/>
                 }
         }
         else if(response.state==="hasValue")
@@ -76,6 +79,6 @@ export const MyBlogs = () => {
     catch(e)
     {
         console.log(e);
-        return <div>Something Went Wrong !!!</div>
+        return <SomethingWentWrongPage/>
     }
 }

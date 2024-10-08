@@ -55,8 +55,8 @@ export const Signin = () => {
             <div className="h-screen flex justify-center items-center bg-slate-300 ">
                 <div className="flex flex-col gap-4 justify-center items-center rounded-xl px-8 py-8 bg-white">
                     <Heading label="Sign In"></Heading>
-                    <InputBox label="Email" placeholder="Enter your email" type="email" onChange={(e) => {setSignInInput({...signInInput,username:e.target.value})}}></InputBox>
-                    <InputBox label="Password" placeholder="Enter your password" type="password" onChange={(e) => {setSignInInput({...signInInput,password:e.target.value})}}></InputBox>
+                    <InputBox label="Email" placeholder="Enter your email" type="email" onChange={(e) => {setSignInInput({...signInInput,username:e.target.value.toLowerCase().trim()})}}></InputBox>
+                    <InputBox label="Password" placeholder="Enter your password" type="password" onChange={(e) => {setSignInInput({...signInInput,password:e.target.value.trim()})}}></InputBox>
                     <Button type="submit" label="Sign In"></Button>
                     <Footer label="Don't have an account? " linkText="Sign up" to="/signup"></Footer>
                     <div className="h-3 w-min-fit text-red-500 font-bold" ref={signInRef}></div>

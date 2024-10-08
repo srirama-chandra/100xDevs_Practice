@@ -52,9 +52,9 @@ export const Signup = () => {
         <div className="h-screen flex justify-center items-center bg-slate-300 ">
             <div className="flex flex-col gap-4 justify-center items-center rounded-xl px-8 py-8 bg-white">
                 <Heading label="Create an account"></Heading>
-                <InputBox label="Name" placeholder="Enter your name" type="text" onChange={(e) => {setSignUpInput({...signUpInput,name:e.target.value})}}></InputBox>
-                <InputBox label="Email" placeholder="Enter your email" type="email" onChange={(e) => {setSignUpInput({...signUpInput,username:e.target.value})}}></InputBox>
-                <InputBox label="Password" placeholder="Enter your password" type="password" onChange={(e) => {setSignUpInput({...signUpInput,password:e.target.value})}}></InputBox>
+                <InputBox label="Name" placeholder="Enter your name" type="text" onChange={(e) => {setSignUpInput({...signUpInput,name:e.target.value.trim()})}}></InputBox>
+                <InputBox label="Email" placeholder="Enter your email" type="email" onChange={(e) => {setSignUpInput({...signUpInput,username:e.target.value.toLowerCase().trim()})}}></InputBox>
+                <InputBox label="Password" placeholder="Enter your password" type="password" onChange={(e) => {setSignUpInput({...signUpInput,password:e.target.value.trim()})}}></InputBox>
                 <Button type="submit" label="Sign Up"></Button>
                 <Footer label="Already have an account? " linkText="Sign in" to="/signin"></Footer>
                 <div className="text-red-500  font-bold h-3 w-min-fit" ref={divRef}></div>
