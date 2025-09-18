@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<br lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<br>
+    <input type="text" id="inputbox"/>
+    <button onclick="sendMessage()">Send</button>
+    <br></br>
+    <div id="serverMessages"></div>
+
+</body>
+<script>
+    const ws = new WebSocket('ws://localhost:3000');
+
+    function sendMessage()
+    {
+        ws.send(JSON.stringify({
+            type:"message",
+            payload: {
+                message: document.getElementById('inputbox').value
+            }
+        }))
+    }
+
+    ws.onmessage = (event) => {
+        const data = JSON.parse(event.data);
+        document.getElementById('serverMessages').appendChild(document.createTextNode(data.payload.message));
+        document.getElementById('serverMessages').appendChild(document.createElement("br"));
+    }
+
+    ws.onopen = ()=>{
+        const urlParams = new URLSearchParams(window.location.search);
+        const roomId = urlParams.get('roomId');
+
+        ws.send(JSON.stringify({
+            type:"join",
+            payload: {
+                roomId,
+            }
+        }))
+    }
+
+</script>
+</html>
